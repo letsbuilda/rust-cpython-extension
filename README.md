@@ -1,2 +1,2 @@
 # rust-python-extension
-A extension for Python in Rust
+An extension for Python in Rust
