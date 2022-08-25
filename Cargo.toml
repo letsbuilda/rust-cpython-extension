@@ -9,4 +9,4 @@ name = "rust_python_extension"
 crate-type = ["cdylib"]
 
 [dependencies]
-pyo3 = { version = "0.16.5", features = ["extension-module"] }
+pyo3 = { version = "0.17.0", features = ["extension-module"] }
