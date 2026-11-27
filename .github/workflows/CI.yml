@@ -17,7 +17,7 @@ jobs:
     - name: Upload wheels
       uses: actions/upload-artifact@v7
       with:
-        name: wheels
+        name: wheels-linux
         path: dist
 
   windows:
@@ -27,11 +27,11 @@ jobs:
     - uses: messense/maturin-action@v1
       with:
         command: build
-        args: --release --no-sdist -o dist
+        args: --release -o dist
     - name: Upload wheels
       uses: actions/upload-artifact@v7
       with:
-        name: wheels
+        name: wheels-windows
         path: dist
 
   macos:
@@ -41,11 +41,11 @@ jobs:
     - uses: messense/maturin-action@v1
       with:
         command: build
-        args: --release --no-sdist -o dist --universal2
+        args: --release -o dist --target universal2-apple-darwin
     - name: Upload wheels
       uses: actions/upload-artifact@v7
       with:
-        name: wheels
+        name: wheels-macos
         path: dist
 
   release:
@@ -56,7 +56,8 @@ jobs:
     steps:
       - uses: actions/download-artifact@v8
         with:
-          name: wheels
+          pattern: wheels-*
+          merge-multiple: true
       - name: Publish to PyPI
         uses: messense/maturin-action@v1
         env:

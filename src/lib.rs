@@ -1,4 +1,3 @@
-
 use pyo3::prelude::*;
 
 /// Formats the sum of two numbers as string.
@@ -9,7 +8,7 @@ fn sum_as_string(a: usize, b: usize) -> PyResult<String> {
 
 /// A Python module implemented in Rust.
 #[pymodule]
-fn rust_python_extension(_py: Python, m: &PyModule) -> PyResult<()> {
+fn rust_python_extension(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(sum_as_string, m)?)?;
     Ok(())
 }
